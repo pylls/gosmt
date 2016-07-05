@@ -1,6 +1,7 @@
 # gosmt
 A golang implementation of a sparse Merkle tree with efficient caching
-strategies. Note that this is a proof-of-concept.
+strategies. Note that this is a proof-of-concept implementation, please
+do not use for anything serious.
 
 #### Sparse Merkle Trees
 A sparse Merkle tree (SMT) is a Merkle (hash) tree that contains a leaf
