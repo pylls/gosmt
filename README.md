@@ -45,7 +45,9 @@ While B-0.5 behaves erratic, B-0.6 and above needs less then 4ms.
 
 ![auditpath time](https://raw.github.com/pylls/gosmt/master/doc/auditpathgen.png)
 
-You can reproduce these benchmarks with the cmd/benchht and cmd/benchsmt
+You can reproduce these benchmarks with the 
+[cmd/benchht](https://github.com/pylls/gosmt/tree/master/cmd/benchht) and
+[cmd/benchsmt](https://github.com/pylls/gosmt/tree/master/cmd/benchsmt)
 executables.
 
 #### Paper
