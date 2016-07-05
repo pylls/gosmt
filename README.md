@@ -37,14 +37,14 @@ tree, and B-0.5 stores 50% of all branches in the tree.
 As we can see, the size of the HT is roughly eight times larger than that of
 the B-0.5 cache.
 
-![cache sizes](https://raw.github.com/pylls/gosmt/master/doc/cachesize.png)
+![cache sizes](https://raw.githubusercontent.com/pylls/gosmt/master/doc/cachesize.png)
 
 There is no such thing as a free lunch though. Below is the average time it
 takes to generate an (Merkle) audit path. We include a number of B- caches with
 different caching probabilities (note that the B cache is identical to B-1.0).
 While B-0.5 behaves erratic, B-0.6 and above needs less then 4ms.
 
-![auditpath time](https://raw.github.com/pylls/gosmt/master/doc/auditpathgen.png)
+![auditpath time](https://raw.githubusercontent.com/pylls/gosmt/master/doc/auditpathgen.png)
 
 You can reproduce these benchmarks with the 
 [cmd/benchht](https://github.com/pylls/gosmt/tree/master/cmd/benchht) and
