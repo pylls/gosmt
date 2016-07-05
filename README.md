@@ -2,7 +2,7 @@
 A golang implementation of a sparse Merkle tree with efficient caching
 strategies. Note that this is a proof-of-concept.
 
-## Sparse Merkle Trees
+#### Sparse Merkle Trees
 A sparse Merkle tree (SMT) is a Merkle (hash) tree that contains a leaf
 for every possible output of a hash function
 [[0]](http://www.links.org/files/RevocationTransparency.pdf).
@@ -15,7 +15,7 @@ practical. This is because the tree is _sparse_: most leafs are empty, so
 when we calculate the hash of the empty leafs we get the same hash. The same
 is true for interior nodes whose children are all empty, and so on.  
 
-## Caching Strategies
+#### Caching Strategies
 While the concept of a SMT is neat on its own, it gets better.
 When simulating a SMT we can
 keep a _cache_ of previously calculated nodes in the SMT. The most obvious part
@@ -48,13 +48,13 @@ While B-0.5 behaves erratic, B-0.6 and above needs less then 4ms.
 You can reproduce these benchmarks with the cmd/benchht and cmd/benchsmt
 executables.
 
-## Paper
+#### Paper
 TODO
 
-## License
+#### License
 Apache 2.0
 
-## References
+#### References
 * [0]: Ben Laurie and Emilia Kasper: [Revocation transparency](http://www.links.org/files/RevocationTransparency.pdf). Google Research (September 2012)
 
 * [1]: Scott A. Crosby and Dan S. Wallach: [Authenticated dictionaries: Real-world
