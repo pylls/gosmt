@@ -5,7 +5,7 @@ strategies. Note that this is a proof-of-concept.
 ## Sparse Merkle Trees
 A sparse Merkle tree (SMT) is a Merkle (hash) tree that contains a leaf
 for every possible output of a hash function
-[0](http://www.links.org/files/RevocationTransparency.pdf).
+[\[0\]](http://www.links.org/files/RevocationTransparency.pdf).
 In other words, a SMT has
 2^N leafs for a hash function with a N-bit output, and for example when
 using SHA-256 this means 2^256 leafs.
@@ -29,7 +29,7 @@ Below is a graph of the size of the authenticated data structure as a function
 of the size of the underlying data structure (the database to authenticate).
 We include a hash treap (HT) in our comparison: good representation of
 related authenticated data structures that are explicity stored in memory
-[1](http://tamperevident.cs.rice.edu/papers/techreport-padbench.pdf).
+[\[1\]](http://tamperevident.cs.rice.edu/papers/techreport-padbench.pdf).
 For a SMT you have three caching stragies: B, B+, and B-0.5. The B cache stores
 all (non-default) branches in the tree, B+ all children of all branches in the
 tree, and B-0.5 stores 50% of all branches in the tree.
@@ -55,6 +55,6 @@ TODO
 Apache 2.0
 
 ## References
-[0]: Ben Laurie and Emilia Kasper: [Revocation transparency](http://www.links.org/files/RevocationTransparency.pdf). Google Research (September 2012)
-[1]: Scott A. Crosby and Dan S. Wallach: [Authenticated dictionaries: Real-world
+* [0]: Ben Laurie and Emilia Kasper: [Revocation transparency](http://www.links.org/files/RevocationTransparency.pdf). Google Research (September 2012)
+* [1]: Scott A. Crosby and Dan S. Wallach: [Authenticated dictionaries: Real-world
 costs and trade-offs](http://tamperevident.cs.rice.edu/papers/techreport-padbench.pdf). ACM Trans. Inf. Syst. Secur. 14(2), 17 (2011)
