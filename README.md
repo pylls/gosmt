@@ -56,8 +56,3 @@ TODO
 #### License
 Apache 2.0
 
-#### References
-* [0]: Ben Laurie and Emilia Kasper: [Revocation transparency](http://www.links.org/files/RevocationTransparency.pdf). Google Research (September 2012)
-
-* [1]: Scott A. Crosby and Dan S. Wallach: [Authenticated dictionaries: Real-world
-costs and trade-offs](http://tamperevident.cs.rice.edu/papers/techreport-padbench.pdf). ACM Trans. Inf. Syst. Secur. 14(2), 17 (2011)
