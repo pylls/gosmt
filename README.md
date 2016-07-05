@@ -1,4 +1,4 @@
-# gosmt
+# gosmt [![Build Status](https://travis-ci.org/pylls/gosmt.svg?branch=master)](https://travis-ci.org/pylls/gosmt) [![GoDoc](https://godoc.org/github.com/pylls/gosmt?status.png)](https://godoc.org/github.com/pylls/gosmt)
 A golang implementation of a sparse Merkle tree with efficient caching
 strategies. Note that this is a proof-of-concept implementation, please
 do not use for anything serious.
