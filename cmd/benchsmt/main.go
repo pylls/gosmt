@@ -31,7 +31,7 @@ var (
 	updateSize      = 256
 	filename        = "benchsmt." + time.Now().String()
 	data            []gosmt.D
-	repeat          = 2
+	repeat          = 4
 )
 
 type res struct {
@@ -150,9 +150,9 @@ func main() {
 		})
 	}
 
-	do(fmt.Sprintf("update time (ms) for %d keys", updateSize), benchUpdate, file)
 	do(fmt.Sprintf("update time (ms) for 2^i keys in 2^%d SMT", keyUpdateDSsize),
 		benchUpdateKey, file)
+	do(fmt.Sprintf("update time (ms) for %d keys", updateSize), benchUpdate, file)
 	do("cache size (MiB)", benchCacheSize, file)
 	do("audit path generation time (ms)", benchAP, file)
 
@@ -250,7 +250,7 @@ func makeUpdateKeyBench(size int, data gosmt.D,
 		b.ResetTimer()
 		for i := 0; i < b.N; i++ {
 			b.StopTimer()
-			// create size keys
+
 			keys := make([][]byte, size)
 			for i := 0; i < size; i++ {
 				keys[i] = randKey(make([]byte, s.N/8))
@@ -259,9 +259,12 @@ func makeUpdateKeyBench(size int, data gosmt.D,
 			copy(newdata, data)
 			newdata = append(newdata, keys...)
 			sort.Sort(gosmt.D(newdata))
+
 			b.StartTimer()
 			s.Update(newdata, keys, s.N, s.Base, gosmt.Set)
+
 			b.StopTimer()
+			// cleanup, remove the keys we just inserted
 			s.Update(data, keys, s.N, s.Base, gosmt.Empty)
 			b.StartTimer()
 		}
