@@ -45,7 +45,8 @@ There is no such thing as a free lunch though. Below is the average time it
 takes to generate an (Merkle) audit path. We include a number of B- caches with
 different caching probabilities (note that the B cache is identical to B-1.0).
 While B-0.5 behaves erratic, B-0.6 and above needs less then 4ms. For many 
-applications this is practical and saves a significant amount of space. 
+applications this is practical and saves a significant amount of space compared
+to explicity stored authenticated data structures. 
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/pylls/gosmt/master/doc/auditpathgen.png" />
