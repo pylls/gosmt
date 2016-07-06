@@ -24,7 +24,7 @@ var (
 )
 
 func main() {
-	log.Printf("update time for keys in 2^%d HT:", keyUpdateDSsize)
+	log.Printf("update time (ms) for keys in 2^%d HT:", keyUpdateDSsize)
 	for i := uint(1); i <= uint(maxSize); i++ {
 		result := testing.Benchmark(makeUpdateKeysBench(1<<uint(keyUpdateDSsize),
 			1<<i))
@@ -32,7 +32,7 @@ func main() {
 	}
 	fmt.Println("")
 
-	log.Println("update time:")
+	log.Printf("update time (ms) for %d keys:", updateSize)
 	for i := uint(1); i <= uint(maxSize); i++ {
 		result := testing.Benchmark(makeUpdateBench(1 << i))
 		log.Printf("%d (%d), %f\n", i, 1<<i, toMS(result.NsPerOp()))
@@ -60,7 +60,8 @@ func main() {
 		}
 		ht.Update()
 
-		htsize := ht.Size() * (256*4 + 64*3)
+		// key + priority + hash + left pointer + right pointer + bool
+		htsize := ht.Size() * (256*3 + 64*3)
 		log.Printf("%d (%d), %.2f\n", i, 1<<i, float64(htsize)/float64(1024*1024))
 	}
 	fmt.Println("")

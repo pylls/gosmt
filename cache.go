@@ -38,7 +38,7 @@ func (c CacheNothing) Entries() int {
 	return 0
 }
 
-// CacheBranch caches every branch where both leafs have non-default values.
+// CacheBranch caches every branch where both children have non-default values.
 type CacheBranch map[string][]byte
 
 // Exists checks if a value exists in the cache.
@@ -70,8 +70,7 @@ func (c CacheBranch) Entries() int {
 	return len(c)
 }
 
-// CacheBranchPlus caches every branch where both leafs have non-default values and the
-// values of the two leafs.
+// CacheBranchPlus caches the two children of every branch where both children have non-default values.
 type CacheBranchPlus map[string][]byte
 
 // Exists checks if a value exists in the cache.
@@ -105,7 +104,7 @@ func (c CacheBranchPlus) Entries() int {
 	return len(c)
 }
 
-// CacheBranchMinus caches every branch where both leafs have non-default values, with the
+// CacheBranchMinus caches every branch where both children have non-default values with the
 // provided probability [0,1]).
 type CacheBranchMinus struct {
 	data        map[string][]byte
