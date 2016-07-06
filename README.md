@@ -31,7 +31,7 @@ of the size of the underlying data structure (the database to authenticate).
 We include a hash treap (HT) in our comparison: a good representation of
 related authenticated data structures that are explicity stored in memory
 [[1]](http://tamperevident.cs.rice.edu/papers/techreport-padbench.pdf).
-For an SMT you have three caching stragies: B, B+, and B-0.5. The B cache stores
+For an SMT we show three caching stragies: B, B+, and B-0.5. The B cache stores
 all (non-default) branches in the tree, B+ all children of all branches in the
 tree, and B-0.5 stores 50% of all branches in the tree.
 As we can see, the size of the HT is roughly eight times larger than that of
