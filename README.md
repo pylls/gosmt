@@ -7,7 +7,7 @@ do not use for anything serious.
 A sparse Merkle tree (SMT) is a Merkle (hash) tree that contains a leaf
 for every possible output of a hash function
 [[0]](http://www.links.org/files/RevocationTransparency.pdf).
-In other words, a SMT has
+In other words, an SMT has
 _2^N_ leafs for a hash function with a _N_-bit output, and for example when
 using SHA-256 this means _2^256_ leafs.
 Since the full in-memory representation of an SMT is impractical (to say the
