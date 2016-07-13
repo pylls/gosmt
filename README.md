@@ -58,7 +58,7 @@ You can reproduce these benchmarks with the
 executables.
 
 #### Paper
-TODO
+[https://eprint.iacr.org/2016/683](https://eprint.iacr.org/2016/683)
 
 #### License
 Apache 2.0
