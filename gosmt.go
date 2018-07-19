@@ -14,22 +14,45 @@ var (
 	Set = []byte{0x1}
 )
 
-// D is our data structure to authenticate
-// D [key][]byte: for each key value, D stores the leaf node value ([]byte)
+type Trie interface {
+	sort.Interface
+	Split(s []byte) (l, r Trie)
+}
+
+// D is our data structure to authenticate,
+// D[index] = key of type: []byte
 type D [][]byte
 
-// for sorting
+// sort.Interface method for sorting
 func (d D) Len() int           { return len(d) }
 func (d D) Swap(i, j int)      { d[i], d[j] = d[j], d[i] }
 func (d D) Less(i, j int) bool { return bytes.Compare(d[i], d[j]) == -1 }
 
 // Split splits d based on Split index s.
 func (d D) Split(s []byte) (l, r D) {
+	// make sure d is stable-sorted first
+	sort.Stable(d)
 	// the smallest index i where d[i] >= s
 	i := sort.Search(d.Len(), func(i int) bool {
 		return bytes.Compare(d[i], s) >= 0
 	})
 	return d[:i], d[i:]
+}
+
+// Key also implements Trie interface, splitable on split index.
+type Key [][]byte
+
+func (k Key) Len() int           { return len(k) }
+func (k Key) Swap(i, j int)      { k[i], k[j] = k[j], k[i] }
+func (k Key) Less(i, j int) bool { return bytes.Compare(k[i], k[j]) == -1 }
+func (k Key) Split(s []byte) (l, r Key) {
+	// make sure k is stable-sorted first
+	sort.Stable(k)
+	// the smallest index i where d[i] >= s
+	i := sort.Search(k.Len(), func(i int) bool {
+		return bytes.Compare(k[i], s) >= 0
+	})
+	return k[:i], k[i:]
 }
 
 // SMT is a sparse Merkle tree.
@@ -60,8 +83,7 @@ func NewSMT(c []byte, cache Cache, hash func(data ...[]byte) []byte) *SMT {
 }
 
 // Update updates keys to the value.
-// TODO: split the type of d and keys
-func (s *SMT) Update(d, keys D, height uint64, base, value []byte) []byte {
+func (s *SMT) Update(d D, keys Key, height uint64, base, value []byte) []byte {
 	if height == 0 {
 		return s.leafHash(value, base)
 	}
