@@ -82,7 +82,7 @@ func NewSMT(c []byte, cache Cache, hash func(data ...[]byte) []byte) *SMT {
 	return s
 }
 
-// Update updates keys to the value.
+// Update updates keys to the value. Note: d and keys should be sorted as param.
 func (s *SMT) Update(d D, keys Key, height uint64, base, value []byte) []byte {
 	if height == 0 {
 		return s.leafHash(value, base)

@@ -12,8 +12,8 @@ import (
 	"testing"
 	"time"
 
+	"github.com/AlexXiong97/gosmt"
 	"github.com/montanaflynn/stats"
-	"github.com/pylls/gosmt"
 )
 
 type run struct {
@@ -200,7 +200,7 @@ func makeAuditPathBench(data gosmt.D,
 	cache gosmt.Cache) func(b *testing.B) {
 	return func(b *testing.B) {
 		s := gosmt.NewSMT([]byte{0x42}, cache, hash)
-		s.Update(data, data, s.N, s.Base, gosmt.Set)
+		s.Update(data, gosmt.Key(data), s.N, s.Base, gosmt.Set)
 
 		// create N keys
 		keys := make([][]byte, b.N)
@@ -219,7 +219,7 @@ func makeUpdateBench(data gosmt.D,
 	cache gosmt.Cache) func(b *testing.B) {
 	return func(b *testing.B) {
 		s := gosmt.NewSMT([]byte{0x42}, cache, hash)
-		s.Update(data, data, s.N, s.Base, gosmt.Set)
+		s.Update(data, gosmt.Key(data), s.N, s.Base, gosmt.Set)
 
 		// create updateSize keys
 		keys := make([][]byte, updateSize)
@@ -245,7 +245,7 @@ func makeUpdateKeyBench(size int, data gosmt.D,
 	cache gosmt.Cache) func(b *testing.B) {
 	return func(b *testing.B) {
 		s := gosmt.NewSMT([]byte{0x42}, cache, hash)
-		s.Update(data, data, s.N, s.Base, gosmt.Set)
+		s.Update(data, gosmt.Key(data), s.N, s.Base, gosmt.Set)
 
 		b.ResetTimer()
 		for i := 0; i < b.N; i++ {
@@ -275,7 +275,7 @@ func makeCacheSizeBench(data gosmt.D,
 	cache gosmt.Cache) func() string {
 	return func() string {
 		s := gosmt.NewSMT([]byte{0x42}, cache, hash)
-		s.Update(data, data, s.N, s.Base, gosmt.Set)
+		s.Update(data, gosmt.Key(data), s.N, s.Base, gosmt.Set)
 
 		return fmt.Sprintf("%.4f",
 			float64(s.CacheEntries()*int(s.N))/float64(1024*1024))

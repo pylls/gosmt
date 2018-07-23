@@ -67,6 +67,6 @@ func getFreshData(size int) Key {
 		}
 		data = append(data, hash(key))
 	}
-	sort.Sort(D(data))
+	sort.Sort(Key(data))
 	return data
 }
