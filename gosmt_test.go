@@ -20,7 +20,8 @@ func TestCaching(t *testing.T) {
 	s = append(s, NewSMT([]byte{0x42},
 		CacheBranchPlus(make(map[string][]byte)), hash))
 
-	var data, keys D
+	var data D
+	var keys Key
 	for round := 0; round < rounds; round++ {
 		roots := make([][]byte, len(s))
 
@@ -30,7 +31,7 @@ func TestCaching(t *testing.T) {
 
 		for i := 0; i < len(s); i++ {
 			// update, then make sure we get the same root from RootHash
-			roots[i] = s[i].Update(data, data, s[i].N, s[i].Base, Set)
+			roots[i] = s[i].Update(data, keys, s[i].N, s[i].Base, Set)
 			r := s[i].RootHash(data, s[i].N, s[i].Base)
 			if !bytes.Equal(roots[i], r) {
 				t.Fatal("roots mismatch")
@@ -56,8 +57,8 @@ func TestCaching(t *testing.T) {
 	}
 }
 
-func getFreshData(size int) D {
-	var data D
+func getFreshData(size int) Key {
+	var data Key
 	for i := 0; i < size; i++ {
 		key := make([]byte, 32)
 		_, err := rand.Read(key)
@@ -66,6 +67,6 @@ func getFreshData(size int) D {
 		}
 		data = append(data, hash(key))
 	}
-	sort.Sort(D(data))
+	sort.Sort(Key(data))
 	return data
 }
