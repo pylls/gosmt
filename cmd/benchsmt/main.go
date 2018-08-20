@@ -12,8 +12,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/AlexXiong97/gosmt"
 	"github.com/montanaflynn/stats"
+	"github.com/pylls/gosmt"
 )
 
 type run struct {
