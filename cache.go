@@ -94,8 +94,10 @@ func (c CacheBranchPlus) HashCache(left, right []byte, height uint64, base, spli
 		c[strconv.Itoa(int(height-1))+string(base)] = left
 		c[strconv.Itoa(int(height-1))+string(split)] = right
 	} else {
-		delete(c, strconv.Itoa(int(height))+string(base))
+		delete(c, strconv.Itoa(int(height-1))+string(base))
+		delete(c, strconv.Itoa(int(height-1))+string(split))
 	}
+
 	return h
 }
 
